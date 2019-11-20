@@ -47,6 +47,7 @@ public class App
         Car car3=car2;
         car3.name="AUDI";
         //Car3 se leaga la obiectul car2 direct la referinta,nu copiaza proprietatile
+//        Modulo = restul impartirii , operator %K
 //Car car4=null;
     }
 }

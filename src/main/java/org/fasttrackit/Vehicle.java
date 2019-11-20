@@ -1,13 +1,22 @@
 package org.fasttrackit;
 
 
-public class Vehicle
-{
+public class Vehicle {
     //Class Variable
     static int totalCount;
-    String name,color;
-    double mileage,maxSpeed,fuelLevel,traveledDistance;
+    String name, color;
+    double mileage, maxSpeed, fuelLevel, traveledDistance;
     boolean running;
+
+    public Vehicle() {
+        totalCount++;
+    }
+
+
+
+
+
+
 public double accelerate(double speed,double durationInHours)
 {
     System.out.println(name+ " is accelerating with " +speed + " km for "+durationInHours+" .h");

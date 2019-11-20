@@ -11,7 +11,10 @@ public class App
     public static void main( String[] args )
     {
         System.out.println( "Welcome to the Racing Game!" );
-        Car carReference = new Car();
+        Engine carEngine= new Engine();
+        carEngine.manufacturer="Renault";
+        carEngine.dissplacement=1.5;
+        Car carReference = new Car(carEngine);
         carReference.name = "Dacia";
         carReference.color = "Red";
         carReference.mileage=9.8;
@@ -19,10 +22,6 @@ public class App
         carReference.doorCount=2;
         carReference.maxSpeed=200;
         carReference.running=false;
-        Engine carEngine= new Engine();
-        carEngine.manufacturer="Renault";
-        carEngine.dissplacement=1.5;
-        carReference.engine=carEngine;
         System.out.println("Engine Details:");
         System.out.println(carReference.engine.manufacturer);
         System.out.println(carReference.engine.dissplacement);
@@ -31,7 +30,7 @@ public class App
         Mechanic mec1=new Mechanic();
         mec1.repairVehicle(carReference);
         System.out.println(carReference.traveledDistance);
-        Car car2= new Car();
+        Car car2= new Car(carEngine);
         car2.name="BMW";
         car2.mileage=14;
         System.out.println("First car name: "+ carReference.name);
@@ -47,7 +46,7 @@ public class App
         Car car3=car2;
         car3.name="AUDI";
         //Car3 se leaga la obiectul car2 direct la referinta,nu copiaza proprietatile
-//        Modulo = restul impartirii , operator %K
+//        Modulo = restul impartirii , operator %
 //Car car4=null;
     }
 }

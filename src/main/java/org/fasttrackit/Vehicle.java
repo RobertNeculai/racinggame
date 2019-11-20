@@ -3,6 +3,8 @@ package org.fasttrackit;
 
 public class Vehicle
 {
+    //Class Variable
+    static int totalCount;
     String name,color;
     double mileage,maxSpeed,fuelLevel,traveledDistance;
     boolean running;

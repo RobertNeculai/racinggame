@@ -48,5 +48,13 @@ public class App
         //Car3 se leaga la obiectul car2 direct la referinta,nu copiaza proprietatile
 //        Modulo = restul impartirii , operator %
 //Car car4=null;
+//Class variables
+        System.out.println("Studying class variables (static variables)");
+        Vehicle vehicle1=new Vehicle();
+        vehicle1.totalCount=10;
+        Vehicle vehicle2=new Vehicle();
+        vehicle2.totalCount=20;
+        Vehicle.totalCount=30;
+        System.out.println(vehicle1.totalCount);
     }
 }

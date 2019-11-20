@@ -19,6 +19,13 @@ public class App
         carReference.doorCount=2;
         carReference.maxSpeed=200;
         carReference.running=false;
+        Engine carEngine= new Engine();
+        carEngine.manufacturer="Renault";
+        carEngine.dissplacement=1.5;
+        carReference.engine=carEngine;
+        System.out.println("Engine Details:");
+        System.out.println(carReference.engine.manufacturer);
+        System.out.println(carReference.engine.dissplacement);
         Car car2= new Car();
         car2.name="BMW";
         car2.mileage=14;

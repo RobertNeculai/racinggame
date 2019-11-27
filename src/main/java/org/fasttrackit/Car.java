@@ -10,4 +10,9 @@ public class Car extends AutoVehicle
     public Car(Engine engine) {
         super(engine);
     }
+
+    public Car() {
+        this(new Engine());
+        //Constructor Overloading
+    }
 }

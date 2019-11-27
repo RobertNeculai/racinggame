@@ -13,6 +13,7 @@ public class App
         System.out.println( "Welcome to the Racing Game!" );
         Game game1=new Game();
         game1.start();
+        Car carWithDefaultEngine=new Car();
         Engine carEngine= new Engine();
         carEngine.manufacturer="Renault";
         carEngine.dissplacement=1.5;

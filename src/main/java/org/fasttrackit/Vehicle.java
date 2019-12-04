@@ -50,7 +50,11 @@ public double accelerate(double speed,double durationInHours)
     System.out.println("Distance traveled: "+traveledDistance);
     return distance;
 }
-
+//Co-variant return type;
+@Override
+public Vehicle clone(){
+        return new Vehicle();
+}
     public String getName() {
         return name;
     }

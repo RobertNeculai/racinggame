@@ -9,4 +9,10 @@ public class JokerVehicle extends Vehicle {
         System.out.println("Cheating ! Beware Ban Incoming");
         return distance;
     }
+    //Can't Restric acces more than parent class
+    //co-variant return type
+    @Override
+    public JokerVehicle clone(){
+        return new JokerVehicle();
+    }
 }

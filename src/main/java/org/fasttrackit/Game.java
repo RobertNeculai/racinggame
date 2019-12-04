@@ -11,7 +11,6 @@ public class Game {
         System.out.println("Number of players: "+playerNumber);
         String vehicleName = getVehicleNameFromUser();
         System.out.println("Name for Car "+vehicleName);
-        System.out.println("First Engine: ");
     }
     private String getVehicleNameFromUser()
     {

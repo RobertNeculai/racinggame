@@ -1,0 +1,32 @@
+package org.fasttrackit;
+
+import java.util.StringJoiner;
+
+public class Track {
+    private String name;
+    private double lenght;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getLenght() {
+        return lenght;
+    }
+
+    public void setLenght(double lenght) {
+        this.lenght = lenght;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Track.class.getSimpleName() + "[", "]")
+                .add("name='" + name + "'")
+                .add("lenght=" + lenght)
+                .toString();
+    }
+}

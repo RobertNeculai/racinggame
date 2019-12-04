@@ -60,10 +60,15 @@ public class App
         vehicle2.totalCount=20;
         Vehicle.totalCount=30;
         System.out.println(vehicle1.totalCount);
-        JokerVehicle ch1=new JokerVehicle();
+        //Method implementation taken from object's class not from variable class;
+        //Vehicle ch1=new JokerVehicle();
+        Vehicle ch1=new JokerVehicle();
         ch1.setName("Furrari");
         ch1.setFuelLevel(100);
         ch1.accelerate(200,1);
         System.out.println("Joker total distance:"+ch1.getTraveledDistance());
+        //Type-Casting
+        ((JokerVehicle)ch1).fly();
+        //Variables class determins Invocable Methods;
     }
 }

@@ -48,6 +48,7 @@ public class App
         System.out.println(carReference.getTraveledDistance());
         Car car3=car2;
         car3.setName("Audi");
+        System.out.println(carReference);
         //Car3 se leaga la obiectul car2 direct la referinta,nu copiaza proprietatile
 //        Modulo = restul impartirii , operator %
 //Car car4=null;
@@ -59,5 +60,10 @@ public class App
         vehicle2.totalCount=20;
         Vehicle.totalCount=30;
         System.out.println(vehicle1.totalCount);
+        JokerVehicle ch1=new JokerVehicle();
+        ch1.setName("Furrari");
+        ch1.setFuelLevel(100);
+        ch1.accelerate(200,1);
+        System.out.println("Joker total distance:"+ch1.getTraveledDistance());
     }
 }

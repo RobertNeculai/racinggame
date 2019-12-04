@@ -1,6 +1,8 @@
 package org.fasttrackit;
 
 
+import java.util.StringJoiner;
+
 public class Vehicle {
     //Class Variable
     static int totalCount;
@@ -103,5 +105,18 @@ public double accelerate(double speed,double durationInHours)
 
     public void setRunning(boolean running) {
         this.running = running;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Vehicle.class.getSimpleName() + "", "")
+                .add("name='" + name + "'")
+                .add("color='" + color + "'")
+                .add("mileage=" + mileage)
+                .add("maxSpeed=" + maxSpeed)
+                .add("fuelLevel=" + fuelLevel)
+                .add("traveledDistance=" + traveledDistance)
+                .add("running=" + running)
+                .toString();
     }
 }

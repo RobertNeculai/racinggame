@@ -1,6 +1,5 @@
 package org.fasttrackit;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -30,13 +29,46 @@ public class Game {
 
     public void start() {
         initializeTracks();
-        displayTracks();
         System.out.println("Starting Game ");
         initializeCompetitors();
-        for (Vehicle vehicle : competitors)
-        {
+        getSelectedTrackFromUser();
+        for (Vehicle vehicle : competitors) {
             System.out.println("It's " + vehicle.getName() + "'s turn");
+            vehicle.accelerate(getAcceleration(),getDuration());
+            newLap(vehicle);
+
+
+        }
     }
+    private double getAcceleration()
+    {
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Please enter acceleration speed:  " );
+        return scanner.nextDouble();
+    }
+    private double getDuration()
+    {
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Please enter duration of acceleration:  " );
+        return scanner.nextDouble();
+    }
+    private Track getSelectedTrackFromUser() {
+        displayTracks();
+        System.out.println("Which track would you like? ");
+        Scanner scanner = new Scanner(System.in);
+        int i=scanner.nextInt();
+        Track selectedTrack=tracks[i-1];
+        System.out.println("Track selectedTrack : "+selectedTrack.getName()+" - "+selectedTrack.getLenght()+"km");
+        return tracks[i-1];
+
+    }
+    private void newLap(Vehicle vehicle) {
+        int c=0;
+        if (vehicle.getTraveledDistance() > tracks.length) {
+            c=(int)(vehicle.getTraveledDistance()/ tracks.length);
+            int d=(int)(((vehicle.getTraveledDistance()% tracks.length)*tracks.length)%100);
+            System.out.println(vehicle.getName() + " has done "+c+" laps and "+d+"% of the next lap");
+        }
     }
     private void initializeTracks()
     {

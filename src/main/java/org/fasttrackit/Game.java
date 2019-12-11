@@ -33,16 +33,16 @@ public class Game {
         System.out.println("Starting Game ");
         initializeCompetitors();
         getSelectedTrackFromUser();
+        int laps=25;
         for (Vehicle vehicle : competitors) {
             System.out.println("It's " + vehicle.getName() + "'s turn");
-            vehicle.accelerate(getAcceleration(),getDuration());
-            int laps=25;
-            if(newLap(vehicle)>=laps)
-                System.out.println(vehicle.getName()+" has won!");
-
-
+            vehicle.accelerate(getAcceleration(), getDuration());
+            while(newLap(vehicle)<laps)
+                    vehicle.accelerate(getAcceleration(), getDuration());
+            System.out.println(vehicle.getName() + " has won!");
         }
     }
+
     private double getAcceleration()
     {
         Scanner scanner=new Scanner(System.in);
@@ -67,6 +67,8 @@ public class Game {
         }catch (InputMismatchException e)
         {
             throw new Exception("This is not a valid input");
+        } finally {
+            System.out.println("Always executed");
         }
     }
     private int newLap(Vehicle vehicle) {
@@ -75,6 +77,7 @@ public class Game {
             c=(int)(vehicle.getTraveledDistance()/ tracks.length);
             int d=(int)(((vehicle.getTraveledDistance()% tracks.length)*tracks.length)%100);
             System.out.println(vehicle.getName() + " has done "+c+" laps and "+d+"% of the next lap");
+
         }
         return c;
     }

@@ -47,7 +47,7 @@ public double accelerate(double speed,double durationInHours)
     double usedFuelWithStandardMileage=mileage*distance /100;
     fuelLevel-=usedFuelWithStandardMileage*mileageMultiplier;
     System.out.println("Used fuel: " +usedFuelWithStandardMileage+ " Remaining Fuel: " +fuelLevel);
-    System.out.println("Distance traveled: "+traveledDistance);
+    System.out.println("Distance traveled: "+traveledDistance+" km");
     return distance;
 }
 //Co-variant return type;

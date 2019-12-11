@@ -1,6 +1,7 @@
 package org.fasttrackit;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
@@ -27,7 +28,7 @@ public class Game {
     }
 
 
-    public void start() {
+    public void start() throws Exception {
         initializeTracks();
         System.out.println("Starting Game ");
         initializeCompetitors();
@@ -35,7 +36,9 @@ public class Game {
         for (Vehicle vehicle : competitors) {
             System.out.println("It's " + vehicle.getName() + "'s turn");
             vehicle.accelerate(getAcceleration(),getDuration());
-            newLap(vehicle);
+            int laps=25;
+            if(newLap(vehicle)>=laps)
+                System.out.println(vehicle.getName()+" has won!");
 
 
         }
@@ -52,23 +55,28 @@ public class Game {
         System.out.println("Please enter duration of acceleration:  " );
         return scanner.nextDouble();
     }
-    private Track getSelectedTrackFromUser() {
+    private Track getSelectedTrackFromUser() throws Exception {
         displayTracks();
         System.out.println("Which track would you like? ");
         Scanner scanner = new Scanner(System.in);
-        int i=scanner.nextInt();
-        Track selectedTrack=tracks[i-1];
-        System.out.println("Track selectedTrack : "+selectedTrack.getName()+" - "+selectedTrack.getLenght()+"km");
-        return tracks[i-1];
-
+        try {
+            int i = scanner.nextInt();
+            Track selectedTrack = tracks[i - 1];
+            System.out.println("Track selectedTrack : " + selectedTrack.getName() + " - " + selectedTrack.getLenght() + "km");
+            return tracks[i - 1];
+        }catch (InputMismatchException e)
+        {
+            throw new Exception("This is not a valid input");
+        }
     }
-    private void newLap(Vehicle vehicle) {
+    private int newLap(Vehicle vehicle) {
         int c=0;
         if (vehicle.getTraveledDistance() > tracks.length) {
             c=(int)(vehicle.getTraveledDistance()/ tracks.length);
             int d=(int)(((vehicle.getTraveledDistance()% tracks.length)*tracks.length)%100);
             System.out.println(vehicle.getName() + " has done "+c+" laps and "+d+"% of the next lap");
         }
+        return c;
     }
     private void initializeTracks()
     {

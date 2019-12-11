@@ -9,6 +9,8 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Game {
     private Track[] tracks= new Track[3];
     private List<Vehicle> competitors=new ArrayList<>();
+    private boolean winnerNotKnown=true;
+    private int competitorsWithoughtFuel=0;
     private void initializeCompetitors()
     {
         int playerNumber=playerNumber();
@@ -33,16 +35,41 @@ public class Game {
         System.out.println("Starting Game ");
         initializeCompetitors();
         getSelectedTrackFromUser();
-        int laps=25;
+        int laps=100;
+        //enhanced for
+        while(winnerNotKnown && competitorsWithoughtFuel<competitors.size()) {
+            System.out.println();
+            System.out.println("New Round");
+            playRound(laps);
+        }
+
+
+    }
+
+    private void playRound(int laps) {
         for (Vehicle vehicle : competitors) {
             System.out.println("It's " + vehicle.getName() + "'s turn");
             vehicle.accelerate(getAcceleration(), getDuration());
-            while(newLap(vehicle)<laps)
-                    vehicle.accelerate(getAcceleration(), getDuration());
-            System.out.println(vehicle.getName() + " has won!");
+            if(vehicle.getFuelLevel()<=0) {
+                competitorsWithoughtFuel = competitorsWithoughtFuel + 1;
+                competitors.remove(vehicle);
+            }
+            if(newLap(vehicle)>=laps) {
+                System.out.println(vehicle.getName() + " has won!");
+                winnerNotKnown=false;
+            }
+            if(competitors.size()==competitorsWithoughtFuel)
+            {
+                System.out.println(vehicle.getName() + " has won!");
+                winnerNotKnown=false;
+            }
         }
     }
 
+    private void roundPlay()
+{
+
+}
     private double getAcceleration()
     {
         System.out.println("Please enter acceleration speed:  " );
@@ -96,7 +123,7 @@ public class Game {
         tracks[0]=track1;
         Track track2=new Track();
         track2.setName("Nurburgring");
-        track2.setLenght(21.2);
+        track2.setLenght(210.2);
         tracks[1]=track2;
     }
     private void displayTracks(){

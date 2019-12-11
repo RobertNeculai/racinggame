@@ -1,20 +1,42 @@
 package org.fasttrackit;
 
 import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Game {
     private Track[] tracks= new Track[3];
-
-    public void start()
+    private List<Vehicle> competitors=new ArrayList<>();
+    private void initializeCompetitors()
     {
+        int playerNumber=playerNumber();
+        System.out.println("Number of players: "+playerNumber);
+        for(int i=1;i<=playerNumber;i++)
+        {
+            System.out.println("Adding player "+i);
+            Vehicle vehicle=new Vehicle();
+            vehicle.setName(getVehicleNameFromUser());
+            vehicle.setFuelLevel(80);
+            vehicle.setMileage(ThreadLocalRandom.current().nextDouble(6,15));
+            vehicle.setMaxSpeed(300);
+            System.out.println("Vehicle for Player "+i+" is : "+vehicle.getName()+" with: "+vehicle.getMileage()+" mileage");
+            competitors.add(vehicle);
+        }
+
+    }
+
+
+    public void start() {
         initializeTracks();
         displayTracks();
         System.out.println("Starting Game ");
-        int playerNumber=playerNumber();
-        System.out.println("Number of players: "+playerNumber);
-        String vehicleName = getVehicleNameFromUser();
-        System.out.println("Name for Car "+vehicleName);
+        initializeCompetitors();
+        for (Vehicle vehicle : competitors)
+        {
+            System.out.println("It's " + vehicle.getName() + "'s turn");
+    }
     }
     private void initializeTracks()
     {
